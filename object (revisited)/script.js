@@ -21,7 +21,6 @@
 // };
 
 // function declaration
-// problem :
 const methodHero = {
   energy: function (eat) {
     this.health += eat;
