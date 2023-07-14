@@ -13,21 +13,117 @@ console.log(`${1 + 1}`);
 const x = 10;
 console.log(`${x % 2 == 0 ? "genap" : "ganjil"}`);
 
-// html fragments
+// 1. html fragments
+// const mhs = {
+//   nama: "Muhamad Ridwan",
+//   umur: 29,
+//   nim: "234521",
+//   email: "admin@email.test",
+// };
+
+// const el = `<div class="mhs">
+
+// <h2>${mhs.nama}</h2>
+// <span>${mhs.umur}</span>
+// <span>${mhs.nim}</span>
+// <span>${mhs.email}</span>
+
+// </div>`;
+
+// console.log(el);
+
+// 2. looping
+// const mhs = [
+//   {
+//     nama: "Muhamad Ridwan",
+//     umur: 29,
+//     nim: "234521",
+//     email: "admin@email.test",
+//   },
+//   {
+//     nama: "Muhamad",
+//     umur: 29,
+//     nim: "234521",
+//     email: "admin@email.test",
+//   },
+//   {
+//     nama: "Ridwan",
+//     umur: 29,
+//     nim: "234521",
+//     email: "admin@email.test",
+//   },
+// ];
+
+// const el = `<div class="mhs">
+
+// ${mhs.map(
+//   (m) => `<ul>
+
+// <li>${m.nama}</li>
+// <li>${m.umur}</li>
+// <li>${m.nim}</li>
+// <li>${m.email}</li>
+
+// </ul>`
+// ).join('')}
+
+// </div>`;
+
+// console.log(el);
+
+// 3. conditionals
+// ternary
+
+// const mhs = {
+//   nama: "Muhamad Ridwan",
+//   umur: 29,
+//   nim: "234521",
+//   email: "admin@email.test",
+// };
+
+// const el = `<div class="mhs">
+
+// <ul>
+
+// <li>${mhs.nama}</li>
+// <li>${mhs.umur}</li>
+// <li>${mhs.nim}</li>
+// <li>${mhs.email} `?` ${mhs.email} `:` </li>
+
+// </ul>
+
+// </div>`;
+
+// console.log(el);
+
+// 4. Nested
+// html fragment bersarang
+
 const mhs = {
   nama: "Muhamad Ridwan",
-  umur: 29,
+  semester: 5,
   nim: "234521",
   email: "admin@email.test",
+  matakuliah: ["RPL", "PBO", "PTI"],
 };
+
+function cetakMataKuliah(matakuliah){
+  return `
+  <ul>
+    ${matakuliah.map((mk) => `<li>${mk}</li>`).join('')}
+  </ul>
+  `;
+}
 
 const el = `<div class="mhs">
 
-<h2>${mhs.nama}</h2>
-<span>${mhs.umur}</span>
+<span>${mhs.nama}</span>
+<span>${mhs.semester}</span>
 <span>${mhs.nim}</span>
-<span>${mhs.email}</span>
+<span>${cetakMataKuliah(mhs.matakuliah)}</span>
 
 </div>`;
 
 console.log(el);
+
+document.body.innerHTML = el;
