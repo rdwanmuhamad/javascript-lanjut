@@ -86,14 +86,71 @@
 // console.log(values)
 
 // mengambil field pada object, setelah dikirim sebagai parameter untuk function
+// const mhs = {
+//   id: 1,
+//   nama: "Muhamad Ridwan",
+//   umur: 29,
+//   email: "ridwan@email.test",
+// };
+
+// function getId(id){
+//     return id
+// }
+// console.log(getId(mhs))
+
+// destructuring return value
+// function penjumlahanPerkalian(a, b) {
+//   return [a + b, a - b, a * b, a / b];
+// }
+
+// const tambah = penjumlahanPerkalian(2, 3)[0];
+// const kali = penjumlahanPerkalian(2, 3)[1];
+// console.log(tambah);
+// console.log(kali);
+
+// const [
+//   tambah = "tidak ada nilai",
+//   kurang = "tidak ada nilai",
+//   kali = "tidak ada nilai",
+//   bagi = "tidak ada nilai",
+// ] = penjumlahanPerkalian(2, 4);
+// console.log(tambah);
+// console.log(kurang);
+// console.log(kali);
+// console.log(bagi);
+
+// function kalkulasi(a, b) {
+//   return {
+//     tambah: a + b,
+//     kurang: a - b,
+//     kali: a * b,
+//     bagi: a / b,
+//   };
+// }
+
+// const { bagi, tambah, kali, kurang } = kalkulasi(2, 4);
+// console.log(kurang);
+
+// destructuring function arguments
 const mhs = {
-  id: 1,
   nama: "Muhamad Ridwan",
   umur: 29,
-  email: "ridwan@email.test",
+  email: "admin@email.test",
+  nilai: {
+    tugas: 80,
+    uts: 85,
+    uas: 90,
+  },
 };
 
-function getId(id){
-    return id
+// function cetakData(mhs) {
+//   return `halo, nama saya ${mhs.nama}, umur ${mhs.umur} tahun`;
+// }
+
+// console.log(cetakData(mhs));
+
+function cetakData({ nama, umur, nilai: { tugas, uts, uas } }) {
+  return `halo, nama saya ${nama}, umur ${umur} tahun. Dan nilai uas saya ${uas}`;
 }
-console.log(getId(mhs))
+
+console.log(cetakData(mhs));
