@@ -94,6 +94,6 @@ const mhs = {
 };
 
 function getId(id){
-    return mhs.id
+    return id
 }
 console.log(getId(mhs))
