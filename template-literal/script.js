@@ -1,17 +1,17 @@
 // template literal / template string
 
-const nama = "Muhamad Ridwan";
-const umur = 29;
+// const nama = "Muhamad Ridwan";
+// const umur = 29;
 
-console.log(`Halo, nama saya ${nama}, dan umur saya ${umur}`);
-console.log("Halo, nama saya" + nama + ", dan umur saya " + umur + " tahun.");
+// console.log(`Halo, nama saya ${nama}, dan umur saya ${umur}`);
+// console.log("Halo, nama saya" + nama + ", dan umur saya " + umur + " tahun.");
 
 // embedded expression
-console.log(`${1 + 1}`);
+// console.log(`${1 + 1}`);
 // console.log(`${alert("Hello, World!")}`);
 
-const x = 10;
-console.log(`${x % 2 == 0 ? "genap" : "ganjil"}`);
+// const x = 10;
+// console.log(`${x % 2 == 0 ? "genap" : "ganjil"}`);
 
 // 1. html fragments
 // const mhs = {
@@ -99,31 +99,69 @@ console.log(`${x % 2 == 0 ? "genap" : "ganjil"}`);
 // 4. Nested
 // html fragment bersarang
 
-const mhs = {
-  nama: "Muhamad Ridwan",
-  semester: 5,
-  nim: "234521",
-  email: "admin@email.test",
-  matakuliah: ["RPL", "PBO", "PTI"],
-};
+// const mhs = {
+//   nama: "Muhamad Ridwan",
+//   semester: 5,
+//   nim: "234521",
+//   email: "admin@email.test",
+//   matakuliah: ["RPL", "PBO", "PTI"],
+// };
 
-function cetakMataKuliah(matakuliah){
-  return `
-  <ul>
-    ${matakuliah.map((mk) => `<li>${mk}</li>`).join('')}
-  </ul>
-  `;
+// function cetakMataKuliah(matakuliah){
+//   return `
+//   <ul>
+//     ${matakuliah.map((mk) => `<li>${mk}</li>`).join('')}
+//   </ul>
+//   `;
+// }
+
+// const el = `<div class="mhs">
+
+// <span>${mhs.nama}</span>
+// <span>${mhs.semester}</span>
+// <span>${mhs.nim}</span>
+// <span>${cetakMataKuliah(mhs.matakuliah)}</span>
+
+// </div>`;
+
+// console.log(el);
+
+// document.body.innerHTML = el;
+
+// taggged templates
+// const nama = "Muhamad Ridwan";
+// const umur = 29;
+
+// function coba(strings, ...values) {
+//   // let result = "";
+//   // strings.forEach((str, i) => {
+//   //   result += `${str}${values[i] || ''}`;
+//   // });
+//   // return result;
+
+//   return strings.reduce(
+//     (result, str, i) => `${result}${str}${values[i] || ""} `,
+//     ""
+//   );
+// }
+
+// const str = coba`Hallo, ${nama} ${umur}`;
+// console.log(str);
+
+// highlight
+const nama = "Muhamad Ridwan";
+const umur = 29;
+const email = 'admin@email.test'
+
+function highlight(strings, ...values) {
+  return strings.reduce(
+    (result, str, i) =>
+      `${result}${str}<span class="hl">${values[i] || ""}</span>`,
+    ""
+  );
 }
 
-const el = `<div class="mhs">
+const str = highlight`Hallo, ${nama} ${umur} ${email}`;
+console.log(str);
 
-<span>${mhs.nama}</span>
-<span>${mhs.semester}</span>
-<span>${mhs.nim}</span>
-<span>${cetakMataKuliah(mhs.matakuliah)}</span>
-
-</div>`;
-
-console.log(el);
-
-document.body.innerHTML = el;
+document.body.innerHTML = str;
