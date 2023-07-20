@@ -1,0 +1,23 @@
+[
+  {
+    id: 1,
+    nama: "Muhamad Ridwan",
+    umur: 29,
+    nim: "234521",
+    email: "admin@email.test",
+  },
+  {
+    id: 2,
+    nama: "Muhamad",
+    umur: 29,
+    nim: "234521",
+    email: "admin@email.test",
+  },
+  {
+   id: 3,
+    nama: "Ridwan",
+    umur: 29,
+    nim: "234521",
+    email: "admin@email.test",
+  },
+];
