@@ -1,5 +1,5 @@
 // callback
-// synchronous callback
+// asynchronous callback
 // function halo(nama){
 //     alert(`Halo, ${nama}`)
 // }
