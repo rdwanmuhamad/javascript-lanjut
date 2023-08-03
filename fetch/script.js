@@ -8,7 +8,30 @@ searchButton.addEventListener("click", function () {
       inputKeyword.value
   )
     .then((response) => response.json())
-    .then((response) => console.log(response));
+    .then((response) => {
+      const movies = response.Search;
+      let cards = "";
+      movies.forEach((movie) => (cards += showCards(movie)));
+      const movieContainer = document.querySelector(".movie-container");
+      movieContainer.innerHTML = cards;
+
+      //   ketika tombol detail di klik
+      const modalDetailButton = document.querySelectorAll(
+        ".modal-detail-button"
+      );
+      modalDetailButton.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const imdbid = this.dataset.imdbid;
+          fetch("http://www.omdbapi.com/?apikey=f7929d99&i=" + imdbid)
+            .then((response) => response.json())
+            .then((movie) => {
+              const movieDetail = detailMovie(movie);
+              const modalBody = document.querySelector(".modal-body");
+              modalBody.innerHTML = movieDetail;
+            });
+        });
+      });
+    });
 });
 
 function showCards(movie) {
