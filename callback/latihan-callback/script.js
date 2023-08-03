@@ -1,11 +1,44 @@
-$.ajax({
-  url: "http://www.omdbapi.com/?i=tt3896198&apikey=f7929d99&s=avengers",
-  success: (results) => {
-    console.log(results);
-    const movies = results.Search;
-    let cards = "";
-    movies.forEach((movie) => {
-      cards += `<div class="col-md-4 my-5">
+$(".search-button").on("click", function () {
+  $.ajax({
+    url: "http://www.omdbapi.com/?i=tt3896198&apikey=f7929d99&s=" + $('.input-keyword').val(),
+    success: (results) => {
+      console.log(results);
+      const movies = results.Search;
+      let cards = "";
+      movies.forEach((movie) => {
+        cards += showCards(movie);
+      });
+      error: (e) => {
+        console.log(e.responseText);
+      };
+      $(".movie-container").html(cards);
+
+      // ketika tombol detail di klik
+      $(".modal-detail-button").on("click", function () {
+        console.log($(this).data("imdbid"));
+        $.ajax({
+          url:
+            "http://www.omdbapi.com/?apikey=f7929d99&i=" +
+            $(this).data("imdbid"),
+          success: (movie) => {
+            const movieDetail = detailMovie(movie);
+            $(".modal-body").html(movieDetail);
+          },
+          error: (e) => {
+            console.log(e.responseText);
+          },
+        });
+      });
+      console.log(movies);
+    },
+    error: (e) => {
+      console.log(e.responseText);
+    },
+  });
+});
+
+function showCards(movie) {
+  return `<div class="col-md-4 my-5">
                 <div class="card">
                     <img src="${movie.Poster}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -16,17 +49,10 @@ $.ajax({
                     </div>
                 </div>
             </div>`;
-    });
-    $(".movie-container").html(cards);
+}
 
-    // ketika tombol detail di klik
-    $(".modal-detail-button").on("click", function () {
-      console.log($(this).data("imdbid"));
-      $.ajax({
-        url:
-          "http://www.omdbapi.com/?apikey=f7929d99&i=" + $(this).data("imdbid"),
-        success: (movie) => {
-          const movieDetail = `<div class="container-fluid">
+function detailMovie(movie) {
+  return `<div class="container-fluid">
                         <div class="row">
                             <div class="col-md-3">
                                 <img src="${movie.Poster}" class="img-fluid" alt="" srcset="">
@@ -46,16 +72,4 @@ $.ajax({
                             </div>
                         </div>
                     </div>`;
-          $(".modal-body").html(movieDetail);
-        },
-        error: (e) => {
-          console.log(e.responseText);
-        },
-      });
-    });
-    console.log(movies);
-  },
-  error: (e) => {
-    console.log(e.responseText);
-  },
-});
+}
